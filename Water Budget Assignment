@@ -1,2 +1,5 @@
 #Water Budget Assignmment
 #The Colour Blue is for Water
+
+#implementing reading an excel file and outputting values of columns:
+#https://www.w3resource.com/python-exercises/pandas/excel/python-pandas-excel-exercise-4.php
