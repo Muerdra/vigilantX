@@ -1,5 +1,45 @@
 #Water Budget Assignmment
 #The Colour Blue is for Water
-
-#implementing reading an excel file and outputting values of columns (not for python, but gives an idea):
-#https://www.w3resource.com/python-exercises/pandas/excel/python-pandas-excel-exercise-4.php
+# https://stackoverflow.com/questions/13517080/sum-a-csv-column-in-python
+import csv
+with open("Discharge2008.csv") as fin:
+    headerline = fin.next()
+    total = 0
+    total2 = 0
+    total3 = 0
+    total4 = 0
+    total5 = 0
+    total6 = 0
+    total7 = 0
+    total8 = 0
+    total9 = 0
+    total10 = 0
+    total11 = 0
+    total12 = 0
+    for row in csv.reader(fin):
+        total += float(row[1])
+        total2 += float(row[2])
+        total3 += float(row[3])
+        total4 += float(row[4])
+        total5 += float(row[5])
+        total6 += float(row[6])
+        total7 += float(row[7])
+        total8 += float(row[8])
+        total9 += float(row[9])
+        total10 += float(row[10])
+        total11 += float(row[11])
+        total12 += float(row[12])
+        atotal = total + total2 + total3 + total4 + total5 + total6 + total7 + total8 + total9 + total10 + total11 + total12 
+    print total
+    print total2
+    print total3
+    print total4
+    print total5
+    print total6
+    print total7
+    print total8
+    print total9
+    print total10
+    print total11
+    print total12
+    print atotal
