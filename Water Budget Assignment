@@ -43,3 +43,64 @@ with open("Discharge2008.csv") as fin:
     print total11
     print total12
     print atotal
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    import csv
+
+
+
+fo = open("Discharge2008.csv")
+
+freader = csv.reader(fo)
+headerline = fo.next()
+
+for row in freader:
+    runoffJan = float(row[1])
+    runoffJan = (runoffJan*1000*24*3600)/(2620000000)
+
+    runoffFeb = float(row[2])
+    runoffFeb = (runoffFeb*1000*24*3600)/(2620000000)
+
+    runoffMar = float(row[3])
+    runoffMar = (runoffMar*1000*24*3600)/(2620000000)
+
+    runoffApr = float(row[4])
+    runoffApr = (runoffApr*1000*24*3600)/(2620000000)
+
+    runoffMay = float(row[5])
+    runoffMay = (runoffMay*1000*24*3600)/(2620000000)
+
+    runoffJun = float(row[6])
+    runoffJun = (runoffJun*1000*24*3600)/(2620000000)
+
+    runoffJul = float(row[7])
+    runoffJul = (runoffJul*1000*24*3600)/(2620000000)
+
+    runoffAug = float(row[8])
+    runoffAug = (runoffAug*1000*24*3600)/(2620000000)
+
+    runoffSep = float(row[9])
+    runoffSep = (runoffSep*1000*24*3600)/(2620000000)
+
+    runoffOct = float(row[10])
+    runoffOct = (runoffOct*1000*24*3600)/(2620000000)   
+    
+    runoffNov = float(row[11])
+    runoffNov = (runoffNov*1000*24*3600)/(2620000000) 
+
+    runoffDec = float(row[12])
+    runoffDec = (runoffDec*1000*24*3600)/(2620000000)
+
+    runoff2008 = runoffJan + runoffFeb + runoffMar + runoffApr + runoffMay + runoffJun + runoffJul + runoffAug + runoffSep + runoffOct + runoffNov + runoffDec
+
+    print runoff2008
+fo.close()
+
+
