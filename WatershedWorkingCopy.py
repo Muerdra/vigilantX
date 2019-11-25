@@ -9,7 +9,7 @@ def MVWRunoffRatio():
     AvgPrecip = 898.0
     RnoffRatio = AvgRnoff / AvgPrecip
     return RnoffRatio
-
+RunoffRatio_Watershed = MVWRunoffRatio()
 
 
 #################################discharge to runoff###########################
