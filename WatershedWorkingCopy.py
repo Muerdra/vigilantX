@@ -106,5 +106,55 @@ def main():
     
     print total
     
+    
+    with open("Precipitation2008.csv") as precip2008file:
+        next(precip2008file)
+
+        total1 = 0
+        total2 = 0
+        total3 = 0
+        total4 = 0
+        total5 = 0
+        total6 = 0
+        total7 = 0
+        total8 = 0
+        total9 = 0
+        total10 = 0
+        total11 = 0
+        total12 = 0
+
+        for row in csv.reader(precip2008file):
+            precipJan = float(row[1])
+            precipFeb = float(row[2])
+            precipMar = float(row[3])
+            precipApr = float(row[4])
+            precipMay = float(row[5])
+            precipJun = float(row[6])
+            precipJul = float(row[7])
+            precipAug = float(row[8])
+            precipSep = float(row[9])
+            precipOct = float(row[10])
+            precipNov = float(row[11])
+            precipDec = float(row[12])
+
+            total1 += float(precipJan)
+            total2 += float(precipFeb)
+            total3 += float(precipMar)
+            total4 += float(precipApr)
+            total5 += float(precipMay)
+            total6 += float(precipJun)
+            total7 += float(precipJul)
+            total8 += float(precipAug)
+            total9 += float(precipSep)
+            total10 += float(precipOct)
+            total11 += float(precipNov)
+            total12 += float(precipDec)
+            totalprecip = total1 + total2 + total3 + total4 + total5 + total6 + total7 + total8 + total9 + total10 + total11 + total12 
+
+    print totalprecip
+    
+    
+    
+    
 if __name__ == '__main__':
     main()
