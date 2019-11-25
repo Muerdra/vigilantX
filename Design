@@ -1,0 +1,46 @@
+print "\t\t\t\t\t\tRunoff Ratio Calculator"
+ 
+print "Our calculator compares the Mississippi River at Fergusons Falls runoff ratio with the Mississippi Valley Watershed runoff ratio."  
+
+runoff = "testrunoff"
+calcrra = "inputdata"
+datafunction2008runoff = "function2008"
+datafunction2008precip = "function2008"
+datafunction2018runoff = "function2018"
+datafunction2018precip = "function2018"
+year = raw_input("Enter year (2008/2018): ")    
+year = year.rstrip('\r')       
+
+if year == '2008' :
+      print "datafor2008"
+      print "Total Stream Runoff in year (2008): ", datafunction2008runoff, "mm"
+      print
+      print "Total Precipitation in year (2008): ", datafunction2008precip, "mm"
+      print
+      print "Average Runoff Ratio of Mississippi Valley Watershed: ", runoff
+      print
+      print "The stream has a", calcrra,  "runoff ratio than average."
+
+elif year == '2018' :
+      print "datafor2018"
+      print "Total Stream Runoff in year (2018): ", datafunction2018runoff, "mm"
+      print
+      print "Total Precipitation in year (2018): ", datafunction2018precip, "mm"
+      print
+      print "Average Runoff Ratio of Mississippi Valley Watershed: ", runoff
+      print
+      print "The stream has a", calcrra,  "runoff ratio than average."
+
+else:
+      print "No can-do man-do"
+      
+ 
+ 
+question = raw_input("Would you like to calculate the runoff ratio for another year (Y/N)? ")
+question = question.rstrip('\r')   
+# (if user selects Y) Repeat above layout  
+if question.upper() == "y":
+      print "does stuff again"
+# (if user selects N) Thank you for using the Runoff Ratio Calculator for the Mississippi River! 
+else:
+      print "Thank you for using the Runoff Ratio Calculator for the Mississippi River! "
