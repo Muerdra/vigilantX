@@ -7,18 +7,18 @@ import csv
 with open("Discharge2008.csv") as fin:
 
     headerline = fin.next()
-    total = 0
-    total2 = 0
-    total3 = 0
-    total4 = 0
-    total5 = 0
-    total6 = 0
-    total7 = 0
-    total8 = 0
-    total9 = 0
-    total10 = 0
-    total11 = 0
-    total12 = 0
+    Jan = 0
+    Feb = 0
+    Mar = 0
+    Apr = 0
+    May = 0
+    Jun = 0
+    Jul = 0
+    Aug = 0
+    Sep = 0
+    Oct = 0
+    Nov = 0
+    Dec = 0
 
     for row in csv.reader(fin):
         runoffJan = float(row[1])
@@ -57,18 +57,18 @@ with open("Discharge2008.csv") as fin:
         runoffDec = float(row[12])
         runoffDec = (runoffDec*1000*24*3600)/(2620000000)
 
-        total += float(runoffJan)
-        total2 += float(runoffFeb)
-        total3 += float(runoffMar)
-        total4 += float(runoffApr)
-        total5 += float(runoffMay)
-        total6 += float(runoffJun)
-        total7 += float(runoffJul)
-        total8 += float(runoffAug)
-        total9 += float(runoffSep)
-        total10 += float(runoffOct)
-        total11 += float(runoffNov)
-        total12 += float(runoffDec)
-        atotal = total + total2 + total3 + total4 + total5 + total6 + total7 + total8 + total9 + total10 + total11 + total12 
+        Jan += float(runoffJan)
+        Feb += float(runoffFeb)
+        Mar += float(runoffMar)
+        Apr += float(runoffApr)
+        May += float(runoffMay)
+        Jun += float(runoffJun)
+        Jul += float(runoffJul)
+        Aug += float(runoffAug)
+        Sep += float(runoffSep)
+        Oct += float(runoffOct)
+        Nov += float(runoffNov)
+        Dec += float(runoffDec)
+        total = Jan + Feb + Mar + Apr + May + Jun + Jul + Aug + Sep + Oct + Nov + Dec 
     
-    print atotal
+    print total
