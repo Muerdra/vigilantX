@@ -1,4 +1,16 @@
 This program that (1) calculates the annual runoff ratio of an individual stream from yearly precipitation and yearly runoff; (2) compares the stream runoff ratio to the average runoff ratio of the watershed that the stream lies in; and (3) states whether the stream has a higher/lower runoff ratio than the watershed. Data for daily discharge and precipitation needs to be sorted by year and discharge also needs to be converted from m3/s into runoff (mm) in order to calculate runoff ratio. 
+################################Average Runoff Ratio for Entire Mississipi Valley WS###########################################
+# Mike Wagner - program to calculate the Runoff Ratio of the entire Mississipi Valley Watershed
+# using average Runnoff and average Precipitation from the years 1971 - 2000, these values
+# were sourced from https://www.mrsourcewater.ca/images/Documents/ConceptualWaterBudget/MainReport/M-RConceptualWaterBudget_PrelimDraft.pdf
+
+def MVWRunoffRatio():
+    AvgRnoff = 367.0
+    AvgPrecip = 898.0
+    RnoffRatio = AvgRnoff / AvgPrecip
+    return RnoffRatio
+
+
 
 #################################discharge to runoff###########################
 
