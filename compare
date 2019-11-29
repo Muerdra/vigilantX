@@ -1,0 +1,14 @@
+def CHComparisonH():
+      high = "High"
+      return high
+
+def CHComparisonL():
+      low = "Low"
+      return low
+
+
+
+if (RunoffRatio_River > RunoffRatio_Watershed):
+      calcrra = CHComparisonH()
+elif (RunoffRatio_River < RunoffRatio_Watershed):
+      calcrra = CHComparisonL()
