@@ -1,0 +1,484 @@
+# RunoffRatioCalculator.py
+# 29 November 2019
+# Created by: Craig Harding, Mike Wagner, Roshelle Chan, Tasfia Khaled
+# 
+# Contributions:
+# Craig -
+# Mike -
+# Roshelle -
+# 
+# Purpose:
+# what program will be used for - 
+# how program will be used 
+# 
+# 
+# This program determines the runoff ratio of the Mississippi River at 
+# Fergusons Falls and compares it to the average runoff ratio of the Mississippi Valley Watershed
+# 
+# Program structure:
+#
+# Assumptions:
+#
+# Planned for limitations:
+#
+# Special cases or known problems:
+# 
+# Inputs and Ouputs:
+#
+# References:
+# Use of runoff ratio (https://www.waterboards.ca.gov/water_issues/programs/swamp/docs/cwt/guidance/513.pdf)
+# Daily discharge for Mississippi River at Fergusons Falls in 2008, 2018 (https://wateroffice.ec.gc.ca/report/historical_e.html?stn=02KF001&dataType=Daily&parameterType=Flow&year=2008&mode=Graph&y1Max=1&y1Min=1)
+# Daily precipitation from Drummond Centre Weather station in 2008, 2018 (https://climate.weather.gc.ca/climate_data/daily_data_e.html?hlyRange=%7C&dlyRange=1984-06-01%7C2019-10-23&mlyRange=1984-01-01%7C2006-12-01&StationID=4268&Prov=ON&urlExtension=_e.html&searchType=stnName&optLimit=yearRange&StartYear=1840&EndYear=2019&selRowPerPage=25&Line=0&searchMethod=contains&txtStationName=drummond&timeframe=2&Day=24&Year=2008&Month=10)
+# Drainage area of Mississippi River at Ferguson Falls, Average precipitation and runoff for Mississippi Valley Watershed (https://www.mrsourcewater.ca/images/Documents/ConceptualWaterBudget/MainReport/M-RConceptualWaterBudget_PrelimDraft.pdf)
+# Formula for converting discharge to runoff (https://www.researchgate.net/post/How_to_convert_discharge_m3_s_to_mm_of_discharge)
+
+import csv
+
+def SumRunoff2008():
+
+    try: 
+        with open("Discharge2008.csv") as DischargeFile2008:
+            DischargeFile2008.next()
+            Jan = 0
+            Feb = 0
+            Mar = 0
+            Apr = 0
+            May = 0
+            Jun = 0
+            Jul = 0
+            Aug = 0
+            Sep = 0
+            Oct = 0
+            Nov = 0
+            Dec = 0
+
+            for row in csv.reader(DischargeFile2008):
+                runoffJan = float(row[1])
+                runoffJan = (runoffJan*1000*24*3600)/(2620000000)
+                runoffFeb = float(row[2])
+                runoffFeb = (runoffFeb*1000*24*3600)/(2620000000)
+                runoffMar = float(row[3])
+                runoffMar = (runoffMar*1000*24*3600)/(2620000000)
+                runoffApr = float(row[4])
+                runoffApr = (runoffApr*1000*24*3600)/(2620000000)
+                runoffMay = float(row[5])
+                runoffMay = (runoffMay*1000*24*3600)/(2620000000)
+                runoffJun = float(row[6])
+                runoffJun = (runoffJun*1000*24*3600)/(2620000000)
+                runoffJul = float(row[7])
+                runoffJul = (runoffJul*1000*24*3600)/(2620000000)
+                runoffAug = float(row[8])
+                runoffAug = (runoffAug*1000*24*3600)/(2620000000)
+                runoffSep = float(row[9])
+                runoffSep = (runoffSep*1000*24*3600)/(2620000000)
+                runoffOct = float(row[10])
+                runoffOct = (runoffOct*1000*24*3600)/(2620000000)             
+                runoffNov = float(row[11])
+                runoffNov = (runoffNov*1000*24*3600)/(2620000000) 
+                runoffDec = float(row[12])
+                runoffDec = (runoffDec*1000*24*3600)/(2620000000)
+
+                if (runoffJan < 0) or (runoffFeb < 0) or (runoffMar < 0) or (runoffApr < 0) or (runoffMay < 0) or (runoffJun < 0) or (runoffJul < 0) or (runoffAug < 0) or (runoffSep < 0) or (runoffOct < 0) or (runoffNov < 0) or (runoffDec < 0):
+                    print "Discharge2008 file contains a negative number - please check values to ensure there are no negatives."
+                    exit()
+
+                Jan += float(runoffJan)
+                Feb += float(runoffFeb)
+                Mar += float(runoffMar)
+                Apr += float(runoffApr)
+                May += float(runoffMay)
+                Jun += float(runoffJun)
+                Jul += float(runoffJul)
+                Aug += float(runoffAug)
+                Sep += float(runoffSep)
+                Oct += float(runoffOct)
+                Nov += float(runoffNov)
+                Dec += float(runoffDec)
+                totalDischarge2008 = Jan + Feb + Mar + Apr + May + Jun + Jul + Aug + Sep + Oct + Nov + Dec 
+            
+    except IOError:
+        print "Can\'t find or read file - please check input file name and format."
+        exit()
+       
+    except ValueError:
+        print "Values in Discharge2008 file must be numeric and cannot contain null values or letters."
+        exit()
+
+    else:
+        DischargeFile2008.close()
+        return totalDischarge2008
+
+def SumRunoff2018(): 
+    try:
+        with open("Discharge2018.csv") as DischargeFile2018:
+            DischargeFile2018.next()
+            Jan = 0
+            Feb = 0
+            Mar = 0
+            Apr = 0
+            May = 0
+            Jun = 0
+            Jul = 0
+            Aug = 0
+            Sep = 0
+            Oct = 0
+            Nov = 0
+            Dec = 0
+
+            for row in csv.reader(DischargeFile2018):
+                runoffJan = float(row[1])
+                runoffJan = (runoffJan*1000*24*3600)/(2620000000)
+                runoffFeb = float(row[2])
+                runoffFeb = (runoffFeb*1000*24*3600)/(2620000000)
+                runoffMar = float(row[3])
+                runoffMar = (runoffMar*1000*24*3600)/(2620000000)
+                runoffApr = float(row[4])
+                runoffApr = (runoffApr*1000*24*3600)/(2620000000)
+                runoffMay = float(row[5])
+                runoffMay = (runoffMay*1000*24*3600)/(2620000000)
+                runoffJun = float(row[6])
+                runoffJun = (runoffJun*1000*24*3600)/(2620000000)
+                runoffJul = float(row[7])
+                runoffJul = (runoffJul*1000*24*3600)/(2620000000)
+                runoffAug = float(row[8])
+                runoffAug = (runoffAug*1000*24*3600)/(2620000000)
+                runoffSep = float(row[9])
+                runoffSep = (runoffSep*1000*24*3600)/(2620000000)
+                runoffOct = float(row[10])
+                runoffOct = (runoffOct*1000*24*3600)/(2620000000)             
+                runoffNov = float(row[11])
+                runoffNov = (runoffNov*1000*24*3600)/(2620000000) 
+                runoffDec = float(row[12])
+                runoffDec = (runoffDec*1000*24*3600)/(2620000000)
+
+                if (runoffJan < 0) or (runoffFeb < 0) or (runoffMar < 0) or (runoffApr < 0) or (runoffMay < 0) or (runoffJun < 0) or (runoffJul < 0) or (runoffAug < 0) or (runoffSep < 0) or (runoffOct < 0) or (runoffNov < 0) or (runoffDec < 0):
+                    print "Discharge2018 file contains a negative number - please check values to ensure there are no negatives."
+                    exit()
+
+                Jan += float(runoffJan)
+                Feb += float(runoffFeb)
+                Mar += float(runoffMar)
+                Apr += float(runoffApr)
+                May += float(runoffMay)
+                Jun += float(runoffJun)
+                Jul += float(runoffJul)
+                Aug += float(runoffAug)
+                Sep += float(runoffSep)
+                Oct += float(runoffOct)
+                Nov += float(runoffNov)
+                Dec += float(runoffDec)
+                totalDischarge2018 = Jan + Feb + Mar + Apr + May + Jun + Jul + Aug + Sep + Oct + Nov + Dec 
+   
+    except IOError:
+        print "Can\'t find or read file - please check input file name and format."
+        exit()
+       
+    except ValueError:
+        print "Values in Discharge2018 file must be numeric and cannot contain null values or letters."
+        exit()
+
+    else:
+        DischargeFile2018.close()
+        return totalDischarge2018   
+
+def SumPrecipitation2008():
+    try:
+        
+        with open("Precipitation2008.csv") as precip2008file:
+            next(precip2008file)
+
+            totalJan = 0
+            totalFeb = 0
+            totalMar = 0
+            totalApr = 0
+            totalMay = 0
+            totalJun = 0
+            totalJul = 0
+            totalAug = 0
+            totalSep = 0
+            total1Oct = 0
+            total1Nov = 0
+            totalDec = 0
+
+            for row in csv.reader(precip2008file):
+                precipJan = float(row[1])
+                precipFeb = float(row[2])
+                precipMar = float(row[3])
+                precipApr = float(row[4])
+                precipMay = float(row[5])
+                precipJun = float(row[6])
+                precipJul = float(row[7])
+                precipAug = float(row[8])
+                precipSep = float(row[9])
+                precipOct = float(row[10])
+                precipNov = float(row[11])
+                precipDec = float(row[12])
+
+                if (precipJan < 0) or (precipFeb < 0) or (precipMar < 0) or (precipApr < 0) or (precipMay < 0) or (precipJun < 0) or (precipJul < 0) or (precipAug < 0) or (precipSep < 0) or (precipOct < 0) or (precipNov < 0) or (precipDec < 0):
+                    print "Precipitation2008 file contains a negative number - please check values to ensure there are no negatives."                 
+                    exit()
+
+                totalJan += float(precipJan)
+                totalFeb += float(precipFeb)
+                totalMar += float(precipMar)
+                totalApr += float(precipApr)
+                totalMay += float(precipMay)
+                totalJun += float(precipJun)
+                totalJul += float(precipJul)
+                totalAug += float(precipAug)
+                totalSep += float(precipSep)
+                total1Oct += float(precipOct)
+                total1Nov += float(precipNov)
+                totalDec += float(precipDec)
+
+                totalprecip2008 = totalJan + totalFeb + totalMar + totalApr + totalMay + totalJun + totalJul + totalAug + totalSep + total1Oct + total1Nov + totalDec 
+    
+    except IOError:
+        print "Can\'t find or read file - please check input file name and format."
+        exit()
+       
+    except ValueError:
+        print "Values in Precipitation2008 file must be numeric and cannot contain null values or letters."
+        exit()
+
+    else:
+        precip2008file.close()
+        return totalprecip2008
+
+def SumPrecipitation2018():
+    try:   
+        with open("Precipitation2018.csv") as precip2018file:
+            next(precip2018file)
+
+            totalJan = 0
+            totalFeb = 0
+            totalMar = 0
+            totalApr = 0
+            totalMay = 0
+            totalJun = 0
+            totalJul = 0
+            totalAug = 0
+            totalSep = 0
+            total1Oct = 0
+            total1Nov = 0
+            totalDec = 0
+
+            for row in csv.reader(precip2018file):
+                precipJan = float(row[1])
+                precipFeb = float(row[2])
+                precipMar = float(row[3])
+                precipApr = float(row[4])
+                precipMay = float(row[5])
+                precipJun = float(row[6])
+                precipJul = float(row[7])
+                precipAug = float(row[8])
+                precipSep = float(row[9])
+                precipOct = float(row[10])
+                precipNov = float(row[11])
+                precipDec = float(row[12])
+
+                if (precipJan < 0) or (precipFeb < 0) or (precipMar < 0) or (precipApr < 0) or (precipMay < 0) or (precipJun < 0) or (precipJul < 0) or (precipAug < 0) or (precipSep < 0) or (precipOct < 0) or (precipNov < 0) or (precipDec < 0):
+                    print "Precipitation2008 file contains a negative number - please check values to ensure there are no negatives."                                   
+                    exit()
+
+                totalJan += float(precipJan)
+                totalFeb += float(precipFeb)
+                totalMar += float(precipMar)
+                totalApr += float(precipApr)
+                totalMay += float(precipMay)
+                totalJun += float(precipJun)
+                totalJul += float(precipJul)
+                totalAug += float(precipAug)
+                totalSep += float(precipSep)
+                total1Oct += float(precipOct)
+                total1Nov += float(precipNov)
+                totalDec += float(precipDec)
+
+                totalprecip2018 = totalJan + totalFeb + totalMar + totalApr + totalMay + totalJun + totalJul + totalAug + totalSep + total1Oct + total1Nov + totalDec 
+    
+    except IOError:
+        print "Can\'t find or read file - please check input file name and format."
+        exit()
+       
+    except ValueError:
+        print "Values in Precipitation2018 file must be numeric and cannot contain null values or letters"
+        exit()
+
+    else:
+        precip2018file.close()
+        return totalprecip2018   
+
+def RiverRunoffRatio(SRR, SPR):
+    RnoffRatioRiv = float(SRR) / float(SPR)
+    return RnoffRatioRiv
+
+def WatershedRunoffRatio():
+    AvgRnoff = 367.0
+    AvgPrecip = 898.0
+
+    RnoffRatio = AvgRnoff / AvgPrecip
+    return RnoffRatio
+
+def CHComparisonH():
+    high = "HIGHER"
+    return high
+
+def CHComparisonL():
+    low = "LOWER"
+    return low
+
+def CHComparisonE():
+    equal = "EQUAL"
+    return equal
+
+while True:
+    RunoffRatio_Watershed = WatershedRunoffRatio()
+    print
+    print "\t\t\t\t\t\tRunoff Ratio Calculator"
+    print
+    print "This calculator compares the Mississippi River at Fergusons Falls runoff ratio with the Mississippi Valley Watershed runoff ratio."  
+    print
+
+    try: 
+        year = input("Enter year (2008/2018): ")    
+        print  
+
+        if year == 2008:
+            # RUNOFF
+            datafunction2008runoff = SumRunoff2008()
+
+            # RUNOFF error handling
+            if datafunction2008runoff > 750:
+                print "The total discharge for 2008 is very high (over 750 for the year). Please check your data."
+                print "If your data is verified to be correct, enter any key to continue."
+                answer = raw_input("Otherwise, enter N to abort the program. ")
+                answer = answer.rstrip('\r').upper()                  
+                print
+
+                if answer == "N":
+                    exit()
+            
+            if datafunction2008runoff < 0:
+                print "The total discharge for 2008 is less than 0 - please check your data."
+                print "**********************************************************************************************************************************"              
+                continue
+
+            # RUNOFF output
+            print "Total Stream Runoff in year (2008): " + str(round(datafunction2008runoff,2)) + " mm"
+            print
+
+
+            # PRECIPITATION 
+            datafunction2008precip = SumPrecipitation2008()
+
+            # PRECIPITATION error handling
+            if datafunction2008precip == 0:
+                print "Values in precipitation cannot be zero - please check input file"
+                print "**********************************************************************************************************************************"
+                continue   
+                
+            # PRECIPITATION output
+            print "Total Precipitation in year (2008): " + str(round(datafunction2008precip,2)) + " mm"
+            print
+
+            # RUNOFF RATIO RIVER 
+            RunoffRatio_River2008 = RiverRunoffRatio(datafunction2008runoff, datafunction2008precip)
+
+            # RUNOFF RATIO RIVER error checking
+            if (RunoffRatio_River2008 > RunoffRatio_Watershed):
+                calcrra2008 = CHComparisonH()
+            elif (RunoffRatio_River2008 < RunoffRatio_Watershed):
+                calcrra2008 = CHComparisonL()
+            elif (RunoffRatio_River2008) == (RunoffRatio_Watershed):
+                calcrra2008 = CHComparisonE()
+
+            # RUNOFF RATIO output
+            print "Average Runoff Ratio of Mississippi River at Fergusons Falls: " + str(round(RunoffRatio_River2008,2))
+            print 
+            print "Average Runoff Ratio of Mississippi Valley Watershed: " + str(round(RunoffRatio_Watershed,2))
+            print
+            print "The stream has a " + str(calcrra2008) + " runoff ratio than average."
+            print
+
+
+        elif year == 2018 :
+            # RUNOFF             
+            datafunction2018runoff = SumRunoff2018()
+
+            # RUNOFF error handling
+            if datafunction2018runoff > 750:
+                print "The total discharge for 2008 is very high (over 750 for the year). Please check your data."
+                print "If your data is verified to be correct, enter any key to continue."
+                answer = raw_input("Otherwise, enter N to abort the program. ")
+                answer = answer.rstrip('\r').upper()                  
+                print
+
+                if answer == "N":
+                    exit()
+            
+            if datafunction2008runoff < 0:
+                print "The total discharge for 2008 is less than 0 - please check your data."
+                print "**********************************************************************************************************************************"
+                continue
+
+            # RUNOFF output
+            print "Total Stream Runoff in year (2018): " + str(round(datafunction2018runoff,2)) + " mm"
+            print
+
+            # PRECIPITATION
+            datafunction2018precip = SumPrecipitation2018()
+
+            # PRECIPITATION error handling
+            if datafunction2018precip == 0:
+                print "Values in precipitation cannot be zero - please check input file"
+                print "**********************************************************************************************************************************"
+                continue   
+
+            # PRECIPITATION output 
+            print "Total Precipitation in year (2018): " + str(round(datafunction2018precip,2)) + " mm"
+            print
+
+            # RUNOFF RATIO RIVER
+            RunoffRatio_River2018 = RiverRunoffRatio(datafunction2018runoff, datafunction2018precip)
+
+            # RUNOFF RATIO RIVER error checking
+            if (RunoffRatio_River2018 > RunoffRatio_Watershed):
+                calcrra2018 = CHComparisonH()
+            elif (RunoffRatio_River2018 < RunoffRatio_Watershed):
+                calcrra2018 = CHComparisonL()
+            elif (RunoffRatio_River2018 == RunoffRatio_Watershed):
+                calcrra2018 = CHComparisonE()
+
+            # RUNOFF RATIO output
+            print "Average Runoff Ratio of Mississippi River at Fergusons Falls: " + str(round(RunoffRatio_River2018,2))
+            print 
+            print "Average Runoff Ratio of Mississippi Valley Watershed: " + str(round(RunoffRatio_Watershed,2))
+            print
+            print "The stream has a " + str(calcrra2018) + " runoff ratio than average."
+            print
+
+        else:
+            print "Please input 2008 or 2018."
+            print
+
+        print "**********************************************************************************************************************************"
+        print "Would you like to calculate the runoff ratio for another year?"
+        question = raw_input("Enter any key to repeat the program. Enter N to stop. ")
+        question=question.upper()
+        question = question.rstrip('\r')  
+        print "**********************************************************************************************************************************"
+        print
+
+        if question == "N":
+            print "Thank you for using the Runoff Ratio Calculator for the Mississippi River!"
+            break
+
+    except NameError:
+        print
+        print "You have entered non-numeric characters - please enter 2008 or 2018 only."
+        print "**********************************************************************************************************************************"
+
+    except SyntaxError: 
+        print 
+        print "Please enter 2008 or 2018."
+        print "**********************************************************************************************************************************"
