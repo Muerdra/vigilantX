@@ -254,14 +254,14 @@ while True:
         calcrra2008 = CHComparisonH()
     elif (RunoffRatio_River2008 < RunoffRatio_Watershed):
         calcrra2008 = CHComparisonL()
-    elif (RunoffRatio_River2008 = RunoffRatio_Watershed):
+    elif (RunoffRatio_River2008 == RunoffRatio_Watershed):
         calcrra2008 = CHComparisonE()
 
     if (RunoffRatio_River2018 > RunoffRatio_Watershed):
         calcrra2018 = CHComparisonH()
     elif (RunoffRatio_River2018 < RunoffRatio_Watershed):
         calcrra2018 = CHComparisonL()
-    elif (RunoffRatio_River2018 = RunoffRatio_Watershed):
+    elif (RunoffRatio_River2018 == RunoffRatio_Watershed):
         calcrra2018 = CHComparisonE()
 
     print "\t\t\t\t\t\tRunoff Ratio Calculator"
