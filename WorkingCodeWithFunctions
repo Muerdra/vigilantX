@@ -1,5 +1,6 @@
 import csv
-
+# calculates total runoff for 2008 by calling and performing calculations on the Discharge2008.csv file
+# which contains daily dischage for 2008 of the Mississipi River at Ferguson Falls. ****Done by Craig****** 
 def SumRunoff2008():
     with open("Discharge2008.csv") as DischargeFile2008:
         DischargeFile2008.next()
@@ -58,7 +59,8 @@ def SumRunoff2008():
     DischargeFile2008.close()
     return totalDischarge2008
 
-
+# calculates total runoff for 2018 by calling and performing calculations on the Discharge2018.csv file
+# which contains daily dischage for 2018 of the Mississipi River at Ferguson Falls. ****Done by Craig****** 
 def SumRunoff2018():
     with open("Discharge2018.csv") as DischargeFile2018:
         DischargeFile2018.next()
@@ -118,7 +120,8 @@ def SumRunoff2018():
     DischargeFile2018.close()
     return totalDischarge2018
 
-    
+# calculates total precipitation for 2008 by calling and performing calculations on the Precipitation2008.csv file
+# which contains daily precipitation for 2008 by the Mississipi River at Ferguson Falls.****Done by Craig******        
 def SumPrecipitation2008():
     with open("Precipitation2008.csv") as precip2008file:
         next(precip2008file)
@@ -168,6 +171,8 @@ def SumPrecipitation2008():
     precip2008file.close()
     return totalprecip2008
 
+# calculates total precipitation for 2018 by calling and performing calculations on the Precipitation2018.csv file
+# which contains daily precipitation for 2018 by the Mississipi River at Ferguson Falls.****Done by Craig******    
 def SumPrecipitation2018():
     with open("Precipitation2018.csv") as precip2018file:
         next(precip2018file)
@@ -217,10 +222,14 @@ def SumPrecipitation2018():
     precip2018file.close()
     return totalprecip2018   
 
+# calculates the runoff ratio of the Mississipi River at Ferguson Falls using total runoff and total precipitation.*****Done by Mike***** 
 def RiverRunoffRatio(SRR, SPR):
     RnoffRatioRiv = float(SRR) / float(SPR)
     return RnoffRatioRiv
 
+# calculates the runoff ratio of the entire Mississipi Valley Watershed by using average runoff and precipitation
+# constants from the years 1971 to 2000, from the source:
+# https://www.mrsourcewater.ca/images/Documents/ConceptualWaterBudget/MainReport/M-RConceptualWaterBudget_PrelimDraft.pdf *****Done by Mike****
 def MVWRunoffRatio():
     AvgRnoff = 367.0
     AvgPrecip = 898.0
